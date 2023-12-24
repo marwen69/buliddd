@@ -1,0 +1,53 @@
+<!-- roomlist.component.html -->
+<div class="container bootstrap snippets bootdeys">
+    <div class="row">
+        <div *ngFor="let room of pagedRooms" class="col-md-4 col-sm-6 content-card">
+            <div class="card-big-shadow">
+                <div
+                        class="card card-just-text"
+                        data-background="color"
+                        data-color="blue"
+                        data-radius="none"
+                >
+                    <button
+                            class="btn material-icons"
+                            (click)="removeRoom(room._id)"
+                    >
+                        &#xE5CD;
+                    </button>
+
+                    <button
+                            class="btn material-icons"
+                            (click)="editRoom(room)"
+                    >
+                        &#xE254;
+                    </button>
+
+                    <div class="content">
+                        <h6 class="category">
+                            <span> numero du chamber : </span>{{ room.roomNumber }}
+                        </h6>
+                        <h4 class="title">
+                            <a href="#"><span> Number des lits: </span> {{ room.capacity }}</a>
+                        </h4>
+                        <!--<p class="description">{{ room.beds.length }} lit</p>-->
+                        <p class="description">Service: {{ room.block.name }}</p>
+                    </div>
+                </div> <!-- end card -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="pagination">
+                <li
+                        class="page-item"
+                        *ngFor="let page of pages"
+                        [class.active]="page === currentPage"
+                >
+                    <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

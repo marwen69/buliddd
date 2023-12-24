@@ -1,0 +1,33 @@
+<div class="letter">
+    <!-- Votre contenu existant -->
+
+    <div class="medical-administrations">
+        <h2>Administrations médicales pour le patient </h2>
+
+        <div *ngIf="medicalAdministrations.length > 0; else noData">
+            <!-- Afficher les administrations médicales ici -->
+            <div *ngFor="let admin of medicalAdministrations" class="administration-card">
+                <button class="btn material-icons" (click)="removeMedicalAdministration(admin._id)">
+                    &#xE5CD;
+                </button>
+
+                <h3>Le {{ admin.dateDuSemain | date: 'shortDate' }}</h3>
+                <p><strong>Médecin :</strong> {{ admin.medicin }}</p>
+                <p><strong>Prescription :</strong> {{ admin.prescription }}</p>
+                <p><strong>Médicament :</strong> {{ admin.nomMedicament }}</p>
+                <p><strong>Poids :</strong> {{ admin.poids }} kg</p>
+                <p><strong>Heure :</strong> {{ admin.time }}</p>
+                <p><strong>Matin :</strong> {{ admin.matin ? '✓' : 'X' }}</p>
+                <p><strong>Après-midi :</strong> {{ admin.apresMidi ? '✓' : 'X' }}</p>
+                <p><strong>Soir :</strong> {{ admin.soir ? '✓' : 'X' }}</p>
+                <p><strong>Remarque de l'infirmière :</strong> {{ admin.remarqueInfermier }}</p>
+                <hr>
+                <!-- Ajoutez plus de détails en fonction de votre modèle d'administration médicale réel -->
+            </div>
+        </div>
+
+        <ng-template #noData>
+            <p>Aucune administration médicale trouvée pour ce patient.</p>
+        </ng-template>
+    </div>
+</div>

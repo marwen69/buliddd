@@ -1,0 +1,38 @@
+<div class="letter">
+    <h2>Surgical Operations for Patient</h2>
+    <div *ngIf="surgicalOperations && surgicalOperations.length > 0">
+        <div *ngFor="let operation of surgicalOperations" class="operation-card">
+
+            <!-- Button to Remove Surgical Operation -->
+            <button class="btn material-icons" (click)="removeSurgicalOperation(operation._id)">
+                &#xE5CD;
+            </button>
+
+
+            <h3>Operation Details</h3>
+            <p><strong>Date:</strong> {{ operation.preOperative.date | date: 'medium' }}</p>
+            <p><strong>Lieu:</strong> {{ operation.preOperative.lieu }}</p>
+            <p><strong>Initials:</strong> {{ operation.preOperative.initials }}</p>
+
+            <h3>Drains</h3>
+            <p><strong>Type:</strong> {{ operation.drains.type }}</p>
+
+            <h3>Post-Operative</h3>
+            <p><strong>Soin:</strong> {{ operation.postOperative.soin }}</p>
+            <p><strong>Date:</strong> {{ operation.postOperative.date | date: 'medium' }}</p>
+            <p><strong>Lieu:</strong> {{ operation.postOperative.lieu }}</p>
+            <p><strong>Initials:</strong> {{ operation.postOperative.initials }}</p>
+
+            <h3>Observations</h3>
+            <p>{{ operation.observations }}</p>
+
+
+            <hr>
+        </div>
+    </div>
+
+    <div *ngIf="!surgicalOperations || surgicalOperations.length === 0">
+        <p>No surgical operations found for this patient.</p>
+    </div>
+
+</div>

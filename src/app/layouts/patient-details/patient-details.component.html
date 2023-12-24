@@ -1,0 +1,147 @@
+<div class="letter">
+
+
+
+    <h2>{{ patientDetails.firstName }} {{ patientDetails.lastName }} - Patient Details</h2>
+    <p><strong>Age:</strong> {{ patientDetails.age }}</p>
+    <p><strong>Gender:</strong> {{ patientDetails.gender }}</p>
+
+    <!-- Add more lines for other patient details as needed -->
+    <hr>
+    <p>{{ patientDetails.medicalData.diagnostic }}</p>
+    <hr>
+    <h3>Clinical Particulars</h3>
+    <p><strong>Allergy:</strong> {{ patientDetails.clinicalParticulars.allergy ? 'oui' : 'Non' }}</p>
+    <p><strong>Allergy Description:</strong> {{ patientDetails.clinicalParticulars.allergyDescription }}</p>
+    <p><strong>Surgical History:</strong>{{ patientDetails.clinicalParticulars.surgicalHistory ? 'oui' : 'Non' }}</p>
+    <p><strong>Surgical Description:</strong> {{ patientDetails.clinicalParticulars.surgicalDescription }}</p>
+    <hr>
+    <h3>Surveillance Elements</h3>
+    <p><strong>Blood Pressure:</strong> {{ patientDetails.surveillanceElements.vitalSigns.bloodPressure }}</p>
+    <p><strong>Pulse:</strong> {{ patientDetails.surveillanceElements.vitalSigns.pulse }}</p>
+    <p><strong>Respiratory Rate:</strong> {{ patientDetails.surveillanceElements.vitalSigns.respiratoryRate }}</p>
+    <!-- Add more lines for other vital signs -->
+    <hr>
+    <h3>Alerts</h3>
+    <p><strong>Weight:</strong> {{ patientDetails.surveillanceElements.alerts.weight }} kg</p>
+    <p><strong>Height:</strong> {{ patientDetails.surveillanceElements.alerts.height }} cm</p>
+    <p><strong>BMI:</strong> {{ patientDetails.surveillanceElements.alerts.BMI }}</p>
+    <hr>
+    <h3>Observations</h3>
+    <p>{{ patientDetails.surveillanceElements.alerts.observations }}</p>
+
+    <hr>
+    <h3>Ajouter Medical Data</h3>
+
+    <div class="card-header" (click)="openModalMedicalAdministrations()" >
+        <h5>Ajouter Medical Administrations</h5>
+    </div>
+
+    <div class="card-header">
+        <h5>Ajouter Surgical Operations</h5>
+    </div>
+
+
+
+    <hr>
+    <h3>Medical Data</h3>
+    <div class="card-header" (click)="redirectToMedicalAdministrations()">
+        <h5>View Medical Administrations</h5>
+    </div>
+    <div class="card-header" (click)="redirectToSurgicalOperations()">
+        <h5>View Surgical Operations</h5>
+    </div>
+
+
+    <!-- Modal Medical Administrations -->
+    <div #fsModalMedicalAdministrations class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div id="myModalroom" class="modal-dialog">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-box">
+                            <button class="material-icons" (click)="closeModalMedicalAdministrations()">&#xE5CD;</button>
+                        </div>
+                        <h4 style="text-align: center" class="modal-title">Medical Administrations</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add the Medical Administrations form -->
+                        <!-- patient-details.component.html -->
+
+                        <!-- patient-details.component.html -->
+
+                        <form (submit)="saveMedicalAdministration()">
+                            <div class="inputbox">
+                                <label>Date du Semain</label>
+                                <input type="date" [(ngModel)]="medicalAdministration.dateDuSemain" name="dateDuSemain" required>
+                                <div *ngIf="formSubmitted && !medicalAdministration.dateDuSemain" class="error-message"></div>
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Doctor</label>
+                                <input type="text" [(ngModel)]="medicalAdministration.doctor" name="doctor" required>
+                                <div *ngIf="formSubmitted && !medicalAdministration.doctor" class="error-message"></div>
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Prescription</label>
+                                <textarea [(ngModel)]="medicalAdministration.prescription" name="prescription" required></textarea>
+                                <div *ngIf="formSubmitted && !medicalAdministration.prescription" class="error-message"></div>
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Nom du Médicament</label>
+                                <input type="text" [(ngModel)]="medicalAdministration.nomMedicament" name="nomMedicament" required>
+                                <div *ngIf="formSubmitted && !medicalAdministration.nomMedicament" class="error-message"></div>
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Poids</label>
+                                <input type="number" [(ngModel)]="medicalAdministration.poids" name="poids" required>
+                                <div *ngIf="formSubmitted && !medicalAdministration.poids" class="error-message"></div>
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Time</label>
+                                <input type="text" [(ngModel)]="medicalAdministration.time" name="time" required>
+                                <div *ngIf="formSubmitted && !medicalAdministration.time" class="error-message"></div>
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Matin</label>
+                                <input type="checkbox" [(ngModel)]="medicalAdministration.matin" name="matin">
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Après-Midi</label>
+                                <input type="checkbox" [(ngModel)]="medicalAdministration.apresMidi" name="apresMidi">
+                            </div>
+
+                            <div class="inputbox">
+                                <label>Soir</label>
+                                <input type="checkbox" [(ngModel)]="medicalAdministration.soir" name="soir">
+                            </div>
+                            <div class="inputbox">
+                                <label>Infirmier name </label>
+                                <p>{{ medicalAdministration.remarqueInfermier }}</p>
+                            </div>
+
+
+
+                            <div class="modal-footer">
+                                <div *ngIf="formSubmitted && !isFormValid()" class="error-message"></div>
+                                <button class="btn" type="submit">Enregistrer</button>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,135 @@
+<!-- block-list.component.html -->
+<section class="light">
+	<div class="container py-2">
+		<div class="h1 text-center text-dark" id="pageHeaderTitle">List des Services</div>
+		<div class="container1">
+			<div class="searchInputWrapper">
+				<input class="searchInput" type="text" placeholder='focus here to search'>
+				<i class="searchInputIcon fa fa-search"></i>
+			</div>
+		</div>
+
+		<!-- add-block-form.component.html -->
+		<div class="container1">
+			<div class="searchInputWrapper">
+				<!-- Call the openModal function on button click -->
+				<button class="btn btn-primary" (click)="openModal()">Ajouter un bloc</button>
+			</div>
+		</div>
+
+		<div #fsModal class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div id="myModal" class="modal-dialog">
+				<div class="modal-dialog modal-confirm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="icon-box">
+								<button class="material-icons" (click)="closeModalblock()">&#xE5CD;</button>
+							</div>
+							<h4 style="text-align: center" class="modal-title">Ajouter Service</h4>
+						</div>
+						<div class="modal-body">
+							<form (submit)="addNewBlock()">
+								<div class="inputbox">
+									<label>nom du Service </label>
+									<input type="text" placeholder="Enter Block Name" [(ngModel)]="newBlockName" required>
+								</div>
+								<div class="inputbox">
+									<label>Description</label>
+									<textarea placeholder="Enter Description" [(ngModel)]="newBlockDescription"></textarea>
+								</div>
+								<div class="modal-body">
+									<!-- Content for the modal body, if needed -->
+								</div>
+								<div class="modal-footer">
+									<button class="btn" type="submit">Enregistrer</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div *ngFor="let block of blocks | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+			<br>
+			<article class="postcard light blue">
+				<a class="postcard__img_link" href="#">
+					<img class="postcard__img" [src]="block.image ? block.image : '/assets/img/bloc.jpg'" alt="Image Title" />
+				</a>
+				<div class="postcard__text t-dark">
+
+					<h1 class="postcard__title blue"><a href="#">{{ block.name }}</a></h1>
+					<div class="postcard__subtitle small">
+						<p>
+							<i class="fas fa-calendar-alt mr-2"></i>{{ block.description }}
+						</p>
+
+					</div>
+					<div class="postcard__bar"></div>
+					<div class="postcard__preview-txt">{{ block.description }}</div>
+					<ul class="postcard__tagbox">
+						<li class="tag__item">
+							<a class="fas fa-clock mr-2" (click)="openModalRoom(block)">Ajouter chambre</a>
+						</li>
+						<li class="tag__item play blue">
+							<a (click)="deleteBlock(block)"><i class="fas fa-play mr-2"></i>Supprimer</a>
+						</li>
+					</ul>
+
+
+
+				</div>
+
+			</article>
+
+
+
+			<!-- Modal room -->
+			<div #fsModalRoom class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+				<div id="myModalroom" class="modal-dialog">
+					<div class="modal-dialog modal-confirm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<div class="icon-box">
+									<button class="material-icons" (click)="closeModalRoom()">&#xE5CD;</button>
+								</div>
+								<h4 style="text-align: center" class="modal-title">Ajouter chambre</h4>
+							</div>
+							<div class="modal-body">
+
+								<form (submit)="Addroom()">
+									<div class="inputbox">
+										<label>Numéro de la chambre </label>
+										<input type="text" placeholder="Entrer le numéro de la chambre" [(ngModel)]="newRoomNumber" required>
+									</div>
+									<div class="inputbox">
+										<label>Capacité </label>
+										<input type="number" placeholder="Entrer la capacité" [(ngModel)]="newRoomCapacity" required>
+									</div>
+									<div class="modal-footer">
+										<button style="text-align: center" class="btn" type="submit">Enregistrer</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<br>
+
+		</div>
+
+		<mat-paginator
+				[length]="blocks.length"
+				[pageSize]="pageSize"
+				[pageIndex]="pageIndex"
+				[pageSizeOptions]="[5, 10, 25, 100]"
+				(page)="onPageChange($event)"
+		></mat-paginator>
+	</div>
+</section>

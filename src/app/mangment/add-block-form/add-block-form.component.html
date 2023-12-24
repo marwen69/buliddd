@@ -1,0 +1,93 @@
+<!--
+<section>
+    <div class="content">
+        <div class="left"></div>
+        <div class="right">
+            <div class="title">
+                <h2>Add New Block</h2>
+            </div>
+            <div class="form">
+                <form (submit)="addNewBlock()">
+                    <div class="inputbox">
+                        <label>Block Name</label>
+                        <input type="text" placeholder="Enter Block Name" [(ngModel)]="newBlockName" required>
+                    </div>
+                    <div class="inputbox">
+                        <label>Description</label>
+                        <textarea placeholder="Enter Description" [(ngModel)]="newBlockDescription"></textarea>
+                    </div>
+
+
+                    <div class="create">
+                        <button type="submit">Add Block</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+
+
+<!-- modal -->
+<div id="fsModal" class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <!-- dialog -->
+    <div class="modal-dialog">
+
+        <!-- content -->
+        <div class="modal-content">
+
+            <!-- header -->
+            <div class="modal-header">
+                <h1 id="myModalLabel" class="modal-title">Ajouter Bloc</h1>
+            </div>
+            <!-- header -->
+
+            <!-- body -->
+            <div class="modal-body">
+                <div class="form">
+                <form (submit)="addNewBlock()">
+                    <div class="inputbox">
+                        <label>Block Name</label>
+                        <input type="text" placeholder="Enter Block Name" [(ngModel)]="newBlockName" required>
+                    </div>
+                    <div class="inputbox">
+                        <label>Description</label>
+                        <textarea placeholder="Enter Description" [(ngModel)]="newBlockDescription"></textarea>
+                    </div>
+
+
+                    <div class="create">
+                        <button type="submit">Add Block</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <!-- body -->
+
+            <!-- footer -->
+            <div class="modal-footer">
+                <button class="btn btn-default" (click)="redirectToDefault()">Default</button>
+                <button class="btn btn-primary" (click)="redirectToPrimary()">Primary</button>
+            </div>
+            <!-- footer -->
+
+
+        </div>
+        <!-- content -->
+
+    </div>
+    <!-- dialog -->
+
+</div>
+<!-- modal -->
+
+<!-- Add this script at the end of the body tag -->
+<script>
+    // Open the modal when the page loads
+    $(document).ready(function () {
+        $('#fsModal').modal('show');
+    });
+</script>

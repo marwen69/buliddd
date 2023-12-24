@@ -1,0 +1,28 @@
+<!-- loginform.component.html -->
+<app-navbar></app-navbar>
+<div class="wrapper" >
+  <div class="inner">
+    <img src="/assets/img/nurse.png" alt="" class="image-1">
+    <form (ngSubmit)="onSubmit()">
+      <h3>Connectez-vous</h3>
+      <div class="form-holder">
+        <span class="lnr lnr-envelope"></span>
+        <input type="text" class="form-control" placeholder="Mail" [(ngModel)]="email" name="email" required>
+      </div>
+      <div class="form-holder">
+        <span class="lnr lnr-lock"></span>
+        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password" required>
+      </div>
+
+      <button type="submit">
+        <span>Login</span>
+      </button>
+      <br>
+      <p><a [routerLink]="['/forgetpassword']" >Mot de passe oublié ?</a></p>
+
+      <p>Vous n'avez pas de compte ? <a [routerLink]="['/Register']">Cliquez ici pour vous inscrire</a>.</p>
+
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

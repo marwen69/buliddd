@@ -1,0 +1,93 @@
+.letter {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  margin: 26px auto 0;
+  max-width: 1000px;
+  min-height: 600px;
+  padding: 24px;
+  position: relative;
+  width: 90%;
+}
+.letter:before, .letter:after {
+  content: "";
+  height: 98%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+.letter:before {
+  background: #fafafa;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  left: -4px;
+  top: 3px;
+  transform: rotate(-2.5deg);
+}
+.letter:after {
+  background: #f6f6f6;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  right: -2px;
+  top: 1px;
+  transform: rotate(1.4deg);
+}
+
+
+//model
+
+.modal-confirm {
+  color: #636363;
+  width: 550px;
+  margin: 30px auto;
+}
+.modal-confirm .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+}
+.modal-confirm .modal-header {
+  padding: 0 15px;
+  border-bottom: none;
+  position: relative;
+}
+.modal-confirm h4 {
+  display: inline-block;
+  font-size: 26px;
+}
+.modal-confirm .close {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+.modal-confirm .modal-body {
+  color: #00c5ff;
+}
+.modal-confirm .modal-footer {
+  background: #00aaff;
+  border-color: #00aaff;
+  text-align: center;
+  margin: 0 -20px -20px;
+  border-radius: 0 0 5px 5px;
+}
+.modal-confirm .btn {
+  color: #fff;
+  border-radius: 4px;
+  transition: all 0.4s;
+  border: none;
+  padding: 8px 20px;
+  outline: none !important;
+}
+.modal-confirm .btn-info {
+  background: #00c5ff;
+}
+.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+  background: #00c5ff;
+}
+
+
+.modal-confirm .modal-footer .btn + .btn {
+  margin-left: 10px;
+}
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}
+

@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+
+
+<div class="wrapper">
+    <div class="inner">
+        <img src="/assets/img/nursere.png" alt="" class="image-1">
+
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <h3>Vous êtes le bienvenu</h3>
+
+            <div class="form-holder">
+                <span class="lnr lnr-user"></span>
+                <input type="text" class="form-control" placeholder="Prénom" formControlName="firstName">
+            </div>
+            <div *ngIf="isFieldInvalid('firstName')" class="error-message">
+                First Name is required.
+            </div>
+
+            <div class="form-holder">
+                <span class="lnr lnr-user"></span>
+                <input type="text" class="form-control" placeholder="Nom de famille" formControlName="lastName">
+            </div>
+            <div *ngIf="isFieldInvalid('lastName')" class="error-message">
+                Last Name is required.
+            </div>
+
+            <div class="form-holder">
+                <span class="lnr lnr-envelope"></span>
+                <input type="email" class="form-control" placeholder="Mail" formControlName="email">
+            </div>
+            <div *ngIf="isFieldInvalid('email')" class="error-message">
+                Email is required and must be a valid email address.
+            </div>
+
+            <div class="form-holder">
+                <span class="lnr lnr-lock"></span>
+                <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password">
+            </div>
+            <div *ngIf="isFieldInvalid('password')" class="error-message">
+                Password is required and must be at least 6 characters long.
+            </div>
+
+            <div class="form-holder">
+                <span class="lnr lnr-lock"></span>
+                <input type="password" class="form-control" placeholder="Retaper le mot de passe" formControlName="confirmPassword">
+            </div>
+            <div *ngIf="isFieldInvalid('confirmPassword')" class="error-message">
+                Password confirmation is required and must match the password.
+            </div>
+
+            <button type="submit">
+                <span>S'inscrire</span>
+            </button>
+
+            <p>Vous avez déjà un compte ? <a [routerLink]="['/login']">Cliquez ici pour vous connecter</a>.</p>
+        </form>
+    </div>
+</div>
+
+<app-footer></app-footer>
