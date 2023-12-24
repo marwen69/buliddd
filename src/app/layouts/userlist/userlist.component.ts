@@ -1,24 +1,22 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {PatientService} from "../../services/patient.service";
 import {Router} from "@angular/router";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
-  selector: 'app-userlist',
-  templateUrl: './userlist.component.html',
-  styleUrls: ['./userlist.component.scss']
+    selector: 'app-userlist',
+    templateUrl: './userlist.component.html',
+    styleUrls: ['./userlist.component.scss']
 })
 export class UserlistComponent implements OnInit {
 
     allPatients: any[] = [];
     pagedPatients: any[] = [];
-    pageSize = 6;
-    pageSizeOptions: number[] = [9, 18, 27];
+    pageSize = 9; // 3x3 grid, so 3 rows and 3 columns
+    pageSizeOptions: number[] = [9, 18, 27]; // Adjust as needed
     currentPage = 0;
 
-    @ViewChild(MatPaginator, { static: true }) matPaginator: MatPaginator;
-
-    constructor(private patientService: PatientService, private router: Router) { }
+    constructor(private patientService: PatientService, private router: Router) {}
 
     ngOnInit(): void {
         this.patientService.getAllPatientsDetails().subscribe(
@@ -28,6 +26,7 @@ export class UserlistComponent implements OnInit {
             },
             (error) => {
                 console.error(error);
+                // Handle error, show an error message, etc.
             }
         );
     }
@@ -42,43 +41,10 @@ export class UserlistComponent implements OnInit {
         const startIndex = this.currentPage * this.pageSize;
         const endIndex = startIndex + this.pageSize;
         this.pagedPatients = this.allPatients.slice(startIndex, endIndex);
-        this.updatePaginatorLength();
     }
 
     viewPatientDetails(patientId: string): void {
+        // Navigate to the detailed profile page with the patientId as a parameter
         this.router.navigate(['/patient-details', patientId]);
     }
-
-    searchPatients(event: any): void {
-        const searchTerm: string = event.target.value.toLowerCase();
-        this.pagedPatients = this.allPatients.filter(patient =>
-            patient.firstName.toLowerCase().includes(searchTerm) ||
-            patient.lastName.toLowerCase().includes(searchTerm) ||
-            patient.matricule.toLowerCase().includes(searchTerm)
-        );
-        this.updatePaginatorLength();
-    }
-
-    updatePaginatorLength(): void {
-        if (this.matPaginator) {
-            this.matPaginator.length = this.pagedPatients.length;
-            this.matPaginator.pageIndex = 0; // Reset to the first page after filtering
-        }
-    }
-
-
-    searchPatientsByMatricule(event: any): void {
-        const matricule: string = event.target.value.toLowerCase();
-        this.patientService.getPatientByMatricule(matricule).subscribe(
-            (patients) => {
-                this.allPatients = [patients]; // Wrap the result in an array to keep the existing logic consistent
-                this.currentPage = 0; // Reset to the first page after searching
-                this.updatePagedPatients();
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
-    }
-
 }

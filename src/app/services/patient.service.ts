@@ -20,7 +20,7 @@ export class PatientService {
 
 
     getAllPatientsDetails(): Observable<any[]> {
-        return this.http.get<any[]>(`${this.apiUrl}/details`);
+        return this.http.get<any[]>(`${this.apiUrl}/allPatientsDetails`);
     }
 
 
