@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PatientService {
-  private apiUrl = 'http://localhost:3000/api'; // Replace with your API base URL
+  private apiUrl = 'http://nursenet.tech/api'; // Replace with your API base URL
 
   constructor(private http: HttpClient) {}
 
@@ -32,10 +32,9 @@ export class PatientService {
     return this.http.put(`${this.apiUrl}/updatepatients/${patientId}`, patientData);
   }
 
-  deletePatient(patientId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/deletepatients/${patientId}`);
+  deletePatientByMatricule(matricule: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/deleatpatients/${matricule}`);
   }
-
   getPatientByMatricule(matricule: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/getPatientByMatricule/${matricule}`);
   }

@@ -41,6 +41,9 @@ import { MedicalAdministrationsComponent } from './layouts/medical-administratio
 import { SurgicalOperationComponent } from './layouts/surgical-operation/surgical-operation.component';
 import { WelcomeComponent } from './layouts/welcome/welcome.component';
 import {LoaderServiceService} from "./services/loader-service.service";
+import { SchematiqueComponent } from './layouts/schematique/schematique.component';
+import { NewWoudComponent } from './layouts/new-woud/new-woud.component';
+import { WouldComponent } from './layouts/would/would.component';
 
 
 
@@ -95,6 +98,9 @@ import {LoaderServiceService} from "./services/loader-service.service";
     MedicalAdministrationsComponent,
     SurgicalOperationComponent,
     WelcomeComponent,
+    SchematiqueComponent,
+    NewWoudComponent,
+    WouldComponent,
 
   ],
     providers: [LoaderServiceService],

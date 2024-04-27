@@ -1,0 +1,93 @@
+<div class="letter">
+    <button class="btn material-icons" (click)="goBack()">
+        <strong>&#x2190; <!-- Unicode for "arrow left" icon --></strong>
+    </button>
+
+    <h2>Surgical Operations for Patient</h2>
+
+    <div *ngIf="pagedSurgicalOperations && pagedSurgicalOperations.length > 0">
+        <div *ngFor="let operation of pagedSurgicalOperations" class="operation-card">
+            <!-- Button to Remove Surgical Operation -->
+            <button class="btn material-icons" (click)="removeSurgicalOperation(operation._id)">
+                &#xE5CD;
+            </button>
+
+            <!-- Operation Details Table -->
+            <h3>fiche Suivi</h3>
+            <table class="operation-details-table">
+                <tr>
+                    <th>plaies Post Opératoire</th>
+                    <td>{{ operation.ficheSuivi.plaiesPostOperation ? '✓' : 'X' }}</td>
+                </tr>
+                <tr>
+                    <th>plaies</th>
+                    <td>{{ operation.ficheSuivi.plaies? '✓' : 'X'  }}</td>
+                </tr>
+                <tr>
+                    <th>ulcères Jambes Pieds</th>
+                    <td>{{ operation.ficheSuivi.ulceresJambesPieds? '✓' : 'X' }}</td>
+                </tr>
+            </table>
+            <br>
+            <!-- Drains Table -->
+            <h3>evaluation Initiale</h3>
+            <table class="drains-table">
+                <tr>
+                    <th>date : </th>
+                    <td>{{ operation.evaluationInitiale.date }}</td>
+                </tr>
+
+                <tr>
+                    <th>Site : </th>
+                    <td>{{ operation.evaluationInitiale.site }}</td>
+                </tr>
+
+
+                <tr>
+                    <th>Profondeur : </th>
+                    <td>{{ operation.evaluationInitiale.profondeur }}</td>
+                </tr>
+                <tr>
+                    <th>Grandeur : </th>
+                    <td>{{ operation.evaluationInitiale.grandeur }}</td>
+                </tr>
+
+                <!-- Add more rows and data bindings as needed -->
+            </table>
+            <br>
+
+            <!-- Post-Operative Table -->
+
+            <table class="post-operative-table">
+                <tr>
+                    <th>phase Necrose : </th>
+                    <td>{{ operation.evaluationInitiale.phaseNecrose ? '✓' : 'X' }}</td>
+                </tr>
+
+                <tr>
+                    <th>Quantite : </th>
+                    <td>{{ operation.evaluationInitiale.inflammation? '✓' : 'X'  }}</td>
+                </tr>
+
+
+                <tr>
+                    <th>Gangrene : </th>
+                    <td>{{ operation.evaluationInitiale.gangrene? '✓' : 'X'  }}</td>
+                </tr>
+            </table>
+            <br>
+
+        </div>
+        <!-- Pagination controls -->
+        <mat-paginator
+                [length]="would.length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="onPageChange($event)"
+        ></mat-paginator>
+    </div>
+
+    <div *ngIf="!pagedSurgicalOperations || pagedSurgicalOperations.length === 0">
+        <p>No surgical operations found for this patient.</p>
+    </div>
+</div>

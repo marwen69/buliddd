@@ -15,10 +15,10 @@ export const ROUTES: RouteInfo[] = [
 /*
     { path: '/dashboard', title: 'Dashboard',  icon: 'pe-7s-graph', class: '' },
 */
-    { path: '/Mangment', title: 'Services',  icon:'pe-7s-note2', class: '' },
-    { path: '/userform', title: 'Patient',  icon:'pe-7s-note2', class: '' },
+    { path: '/Mangment', title: 'Services',  icon:'pe-7s-copy-file', class: '' },
+    { path: '/userform', title: 'Ajouter Patient',  icon:'pe-7s-add-user', class: '' },
     { path: '/Chamber', title: 'Chamber',  icon:'pe-7s-note2', class: '' },
-    { path: '/userlist', title: 'uselist',  icon:'pe-7s-note2', class: '' },
+    { path: '/userlist', title: 'List des patients',  icon:'pe-7s-users', class: '' },
     { path: '/patient-details/:id', title: 'uselist',  icon:'pe-7s-note2', class: 'hide' },
 
 

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class NurseService {
-  private apiUrl = 'http://localhost:3000/api'; // Replace with your actual API URL
+  private apiUrl ='http://nursenet.tech/api'; // Replace with your actual API URL
   private currentNurse: any; // Modify the type as per your nurse object structure
   constructor(private http: HttpClient) {}
 

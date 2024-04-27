@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {PatientService} from "../../services/patient.service";
 import {BlockService} from "../../services/bloc.service";
 import {RoomService} from "../../services/room.service";
+import {NotificationServiceService} from "../../services/notification-service.service";
+import {Router} from "@angular/router";
 
 
 
@@ -53,7 +55,9 @@ export class UserformComponent implements OnInit {
     constructor(
         private patientService: PatientService,
         private blockService: BlockService,
-        private roomService: RoomService
+        private roomService: RoomService,
+        private notificationService: NotificationServiceService,
+        private router: Router
     ) {}
 
     fetchBlocs(): void {
@@ -76,13 +80,17 @@ export class UserformComponent implements OnInit {
             (response) => {
                 console.log(response);
                 // Handle success, e.g., show a success message, navigate to another page, etc.
+                this.notificationService.showSuccess('Patient ajouté avec succès!', 'Success');
+                this.router.navigate(['/userlist']);
             },
             (error) => {
                 console.error(error);
                 // Handle error, show an error message, etc.
+                this.notificationService.showError('Erreur lors de l\'ajout du patient', 'Error');
             }
         );
     }
+
 
     onBlocChange(): void {
         // Fetch rooms when the bloc selection changes
@@ -103,7 +111,23 @@ export class UserformComponent implements OnInit {
         });
     }
 
+    calculateBMI(): number {
+        // Calculate BMI using weight (in kilograms) and height (in meters)
+        const weight = this.newPatient.surveillanceElements.alerts.weight;
+        const height = this.newPatient.surveillanceElements.alerts.height;
+        if (weight && height) {
+            const bmi = weight / (height * height);
+            return bmi;
+        }
+
+        return 0;
+    }
+
+
     ngOnInit(): void {
         this.fetchBlocs();
     }
+
+
+
 }

@@ -6,9 +6,10 @@
         <div class="h1 text-center text-dark" id="pageHeaderTitle">List des patients</div>
         <div class="container1">
             <div class="searchInputWrapper">
-                <input class="searchInput" type="text" placeholder='focus here to search'>
-                <i class="searchInputIcon fa fa-search"></i>
+                <input class="searchInput" type="text" placeholder='Focus here to search' [(ngModel)]="searchTerm" />
+                <button class="btn searchButton" (click)="searchPatients()">Search</button>
             </div>
+
         </div>
         <br>
 
@@ -17,10 +18,14 @@
 
 
                 <div class="col-md-4" *ngFor="let patient of pagedPatients">
+
                     <div class="card user-card">
+                        <button class="btn material-icons" (click)="deletePatient(patient.matricule)">
+                            &#xE5CD;
+                        </button>
                         <!-- ... (existing code) ... -->
                         <div class="card-header" (click)="viewPatientDetails(patient._id)">
-                            <h5>Profil</h5>
+                            <h5>Plus d'information </h5>
                         </div>
                         <!-- ... (existing code) ... -->
                         <div class="card-block">

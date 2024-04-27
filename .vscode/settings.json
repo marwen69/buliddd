@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/91c1ab25-8b8a-458b-9df3-76d98fa60936/resourceGroups/nurseNet/providers/Microsoft.Web/sites/nursenet",
+    "appService.deploySubpath": "."
+}

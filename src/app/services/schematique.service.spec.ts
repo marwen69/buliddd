@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-// @ts-ignore
-import { BlocService } from './bloc.service';
+import { SchematiqueService } from './schematique.service';
 
-describe('BlocService', () => {
-  let service: BlocService;
+describe('SchematiqueService', () => {
+  let service: SchematiqueService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BlocService);
+    service = TestBed.inject(SchematiqueService);
   });
 
   it('should be created', () => {

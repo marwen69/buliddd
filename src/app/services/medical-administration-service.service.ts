@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 })
 export class MedicalAdministrationServiceService {
 
-  private apiUrl = 'http://localhost:3000/api'; // Replace with your API base URL
+  private apiUrl = 'http://nursenet.tech/api'; // Replace with your API base URL
 
   constructor(private http: HttpClient) {}
 

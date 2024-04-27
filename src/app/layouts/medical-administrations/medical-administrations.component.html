@@ -1,12 +1,9 @@
 <div class="letter">
-    <!-- Votre contenu existant -->
-
     <div class="medical-administrations">
         <h2>Administrations médicales pour le patient </h2>
 
-        <div *ngIf="medicalAdministrations.length > 0; else noData">
-            <!-- Afficher les administrations médicales ici -->
-            <div *ngFor="let admin of medicalAdministrations" class="administration-card">
+            <!-- Display paged medical administrations -->
+            <div *ngFor="let admin of pagedMedicalAdministrations" class="administration-card">
                 <button class="btn material-icons" (click)="removeMedicalAdministration(admin._id)">
                     &#xE5CD;
                 </button>
@@ -16,18 +13,24 @@
                 <p><strong>Prescription :</strong> {{ admin.prescription }}</p>
                 <p><strong>Médicament :</strong> {{ admin.nomMedicament }}</p>
                 <p><strong>Poids :</strong> {{ admin.poids }} kg</p>
-                <p><strong>Heure :</strong> {{ admin.time }}</p>
+                <p><strong>periode :</strong> {{ admin.time }}</p>
                 <p><strong>Matin :</strong> {{ admin.matin ? '✓' : 'X' }}</p>
                 <p><strong>Après-midi :</strong> {{ admin.apresMidi ? '✓' : 'X' }}</p>
                 <p><strong>Soir :</strong> {{ admin.soir ? '✓' : 'X' }}</p>
-                <p><strong>Remarque de l'infirmière :</strong> {{ admin.remarqueInfermier }}</p>
+                <p><strong>Nom infirmière :</strong> {{ admin.remarqueInfermier }}</p>
                 <hr>
-                <!-- Ajoutez plus de détails en fonction de votre modèle d'administration médicale réel -->
+                <!-- Add more details based on your medical administration model -->
             </div>
-        </div>
 
-        <ng-template #noData>
-            <p>Aucune administration médicale trouvée pour ce patient.</p>
-        </ng-template>
+            <!-- Pagination controls -->
+            <mat-paginator
+                    [length]="allMedicalAdministrations.length"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="onPageChange($event)"
+            ></mat-paginator>
+
+
+
     </div>
 </div>

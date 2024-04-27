@@ -1,8 +1,10 @@
 <!-- loginform.component.html -->
 <app-navbar></app-navbar>
-<div class="wrapper" >
+<div class="wrapper" style="background-image: url('./assets/img/10465294.jpg'); background-size: cover;">
   <div class="inner">
-    <img src="/assets/img/nurse.png" alt="" class="image-1">
+<!--
+    <img src="assets/img/nurse.png" alt="" class="image-1">
+-->
     <form (ngSubmit)="onSubmit()">
       <h3>Connectez-vous</h3>
       <div class="form-holder">
@@ -21,6 +23,8 @@
       <p><a [routerLink]="['/forgetpassword']" >Mot de passe oublié ?</a></p>
 
       <p>Vous n'avez pas de compte ? <a [routerLink]="['/register']">Cliquez ici pour vous inscrire</a>.</p>
+
+
 
     </form>
   </div>

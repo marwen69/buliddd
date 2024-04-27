@@ -18,6 +18,8 @@ import {PatientDetailsComponent} from "../patient-details/patient-details.compon
 import {MedicalAdministrationsComponent} from "../medical-administrations/medical-administrations.component";
 import {SurgicalOperationComponent} from "../surgical-operation/surgical-operation.component";
 import {WelcomeComponent} from "../welcome/welcome.component";
+import {NewWoudComponent} from "../new-woud/new-woud.component";
+import {WouldComponent} from "../would/would.component";
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: HomeComponent },
@@ -26,9 +28,12 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'userform',       component: UserformComponent },
     { path: 'userlist',       component: UserlistComponent },
 
+    { path: 'would',       component: NewWoudComponent },
+
     { path: 'welcome',       component: WelcomeComponent },
     { path: 'medical-administrations/:id', component: MedicalAdministrationsComponent },
     { path: 'surgical-operations/:id', component: SurgicalOperationComponent },
+    { path: 'Schematique-Des-Plaies/:id', component: WouldComponent },
 
 
     { path: 'patient-details/:id',  component: PatientDetailsComponent },

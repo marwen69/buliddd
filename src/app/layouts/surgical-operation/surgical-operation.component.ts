@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SurgicalOperationService} from "../../services/surgical-operation.service";
 import {NotificationServiceService} from "../../services/notification-service.service";
+import { PageEvent } from "@angular/material/paginator";
+
 
 @Component({
   selector: 'app-surgical-operation',
@@ -13,12 +15,19 @@ export class SurgicalOperationComponent implements OnInit {
   patientId: string;
   surgicalOperations: any[]; // Update the type based on your actual surgical operation model
 
+  // Pagination properties
+  pagedSurgicalOperations: any[] = [];
+  pageSize = 2; // Adjust as needed
+  pageSizeOptions: number[] = [4, 8, 12]; // Adjust as needed
+  currentPage = 0;
+
   constructor(
+      private router: Router, // Inject the Router service
+
       private route: ActivatedRoute,
       private surgicalOperationService: SurgicalOperationService, // Inject your SurgicalOperationService
       private notificationService: NotificationServiceService // Inject the notification service
-
-) {}
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -32,12 +41,25 @@ export class SurgicalOperationComponent implements OnInit {
     this.surgicalOperationService.getAllSurgicalOperationRecords(this.patientId).subscribe(
         (surgicalOperations) => {
           this.surgicalOperations = surgicalOperations;
+          this.updatePagedSurgicalOperations();
         },
         (error) => {
           console.error(error);
         }
     );
   }
+
+  updatePagedSurgicalOperations(): void {
+    const startIndex = this.currentPage * this.pageSize;
+    this.pagedSurgicalOperations = this.surgicalOperations.slice(startIndex, startIndex + this.pageSize);
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePagedSurgicalOperations();
+  }
+
   removeSurgicalOperation(operationId: string): void {
     // Check if operationId is provided
     if (!operationId) {
@@ -68,6 +90,11 @@ export class SurgicalOperationComponent implements OnInit {
           this.notificationService.showError('Error removing surgical operation', 'Error');
         }
     );
+  }
+
+  goBack(): void {
+    // Navigate back to the patient-details page
+    this.router.navigate(['/patient-details', this.patientId]);
   }
 
 }

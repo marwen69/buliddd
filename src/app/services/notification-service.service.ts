@@ -24,16 +24,7 @@ export class NotificationServiceService {
   }
 
   showWarning(message, title) {
-    this.toastr.warning(message, title, {
-      timeOut: 0,
-      extendedTimeOut: 0,
-      tapToDismiss: false,
-      onActivateTick: true
-    }).onTap.pipe(
-        take(1)
-    ).subscribe(() => {
-      // Emit the confirmation event when the notification is tapped
-      this.confirmationSubject.next(true);
-    });
+    this.toastr.warning(message, title);
+
   }
 }

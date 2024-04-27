@@ -6,32 +6,31 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class SurgicalOperationService {
+  private baseUrl = 'http://nursenet.tech/api';
 
-  private apiUrl = 'http://localhost:3000/api'; // Replace with your API base URL
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-  createSurgicalOperation(patientId: string, surgicalOperationData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/patients/${patientId}/surgicalOperations`, surgicalOperationData);
-  }
-
-  getAllSurgicalOperations(patientId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/patients/${patientId}/surgicalOperations`);
+  createSurgicalOperation(surgicalOperationData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/surgicalOperations`, surgicalOperationData);
   }
 
   getSurgicalOperationById(surgicalOperationId: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/surgicalOperations/${surgicalOperationId}`);
+    return this.http.get<any>(`${this.baseUrl}/surgicalOperations/${surgicalOperationId}`);
   }
 
-  updateSurgicalOperation(surgicalOperationId: string, surgicalOperationData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/surgicalOperations/${surgicalOperationId}`, surgicalOperationData);
+  updateSurgicalOperation(surgicalOperationId: string, updateData: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/surgicalOperations/${surgicalOperationId}`, updateData);
   }
 
   deleteSurgicalOperation(surgicalOperationId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/surgicalOperations/${surgicalOperationId}`);
+    return this.http.delete<any>(`${this.baseUrl}/surgicalOperations/${surgicalOperationId}`);
+  }
+
+  getAllSurgicalOperations(patientId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/surgicalOperations/${patientId}`);
   }
 
   getAllSurgicalOperationRecords(patientId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/patients/${patientId}/surgicalOperations/records`);
+    return this.http.get<any[]>(`${this.baseUrl}/surgicalOperations/getAllRecords/${patientId}`);
   }
 }

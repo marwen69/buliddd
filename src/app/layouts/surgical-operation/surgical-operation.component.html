@@ -1,38 +1,95 @@
 <div class="letter">
+    <button class="btn material-icons" (click)="goBack()">
+        <strong>&#x2190; <!-- Unicode for "arrow left" icon --></strong>
+    </button>
     <h2>Surgical Operations for Patient</h2>
-    <div *ngIf="surgicalOperations && surgicalOperations.length > 0">
-        <div *ngFor="let operation of surgicalOperations" class="operation-card">
-
+    <div *ngIf="pagedSurgicalOperations && pagedSurgicalOperations.length > 0">
+        <div *ngFor="let operation of pagedSurgicalOperations" class="operation-card">
             <!-- Button to Remove Surgical Operation -->
             <button class="btn material-icons" (click)="removeSurgicalOperation(operation._id)">
                 &#xE5CD;
             </button>
 
-
+            <!-- Operation Details Table -->
             <h3>Operation Details</h3>
-            <p><strong>Date:</strong> {{ operation.preOperative.date | date: 'medium' }}</p>
-            <p><strong>Lieu:</strong> {{ operation.preOperative.lieu }}</p>
-            <p><strong>Initials:</strong> {{ operation.preOperative.initials }}</p>
-
+            <table class="operation-details-table">
+                <tr>
+                    <th>Date</th>
+                    <td>{{ operation.preOperative.datepreOperative | date: 'medium' }}</td>
+                </tr>
+                <tr>
+                    <th>Lieu</th>
+                    <td>{{ operation.preOperative.lieupreOperative }}</td>
+                </tr>
+                <tr>
+                    <th>Initials</th>
+                    <td>{{ operation.preOperative.initialspreOperative }}</td>
+                </tr>
+            </table>
+<br>
+            <!-- Drains Table -->
             <h3>Drains</h3>
-            <p><strong>Type:</strong> {{ operation.drains.type }}</p>
-
+            <table class="drains-table">
+                <tr>
+                    <th>Type</th>
+                    <td>{{ operation.drains.typedrains }}</td>
+                </tr>
+                <tr>
+                    <th>Aspiration</th>
+                    <td>{{ operation.drains.aspirationdrains }}</td>
+                </tr>
+                <tr>
+                    <th>Remarque</th>
+                    <td>{{ operation.drains.remaquedrains }}</td>
+                </tr>
+                <tr>
+                    <th>Init</th>
+                    <td>{{ operation.drains.enPlacedrains.initenPlacedrains | date: 'medium' }}</td>
+                </tr>
+                <tr>
+                    <th>Installe</th>
+                    <td>{{ operation.drains.enPlacedrains.installeenPlacedrains | date: 'medium' }}</td>
+                </tr>
+                <tr>
+                    <th>Enleve</th>
+                    <td>{{ operation.drains.enPlacedrains.enleveenPlacedrains | date: 'medium' }}</td>
+                </tr>
+            </table>
+            <br>
+            <!-- Post-Operative Table -->
             <h3>Post-Operative</h3>
-            <p><strong>Soin:</strong> {{ operation.postOperative.soin }}</p>
-            <p><strong>Date:</strong> {{ operation.postOperative.date | date: 'medium' }}</p>
-            <p><strong>Lieu:</strong> {{ operation.postOperative.lieu }}</p>
-            <p><strong>Initials:</strong> {{ operation.postOperative.initials }}</p>
-
+            <table class="post-operative-table">
+                <tr>
+                    <th>Soin</th>
+                    <td>{{ operation.postOperative.soinpostOperative }}</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ operation.postOperative.datepostOperative | date: 'medium' }}</td>
+                </tr>
+                <tr>
+                    <th>Lieu</th>
+                    <td>{{ operation.postOperative.lieupostOperative }}</td>
+                </tr>
+                <tr>
+                    <th>Initials</th>
+                    <td>{{ operation.postOperative.initialspostOperative }}</td>
+                </tr>
+            </table>
+            <br>
             <h3>Observations</h3>
             <p>{{ operation.observations }}</p>
-
-
-            <hr>
+            <hr style="color: #00aaff">
         </div>
+        <!-- Pagination controls -->
+        <mat-paginator
+                [length]="surgicalOperations.length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="onPageChange($event)"
+        ></mat-paginator>
     </div>
-
-    <div *ngIf="!surgicalOperations || surgicalOperations.length === 0">
+    <div *ngIf="!pagedSurgicalOperations || pagedSurgicalOperations.length === 0">
         <p>No surgical operations found for this patient.</p>
     </div>
-
 </div>

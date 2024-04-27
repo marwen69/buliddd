@@ -1,56 +1,70 @@
 <div class="letter">
 
 
+    <h2>{{ patientDetails.firstName }} {{ patientDetails.lastName }} - Détails du patient</h2>
+    <p><strong>Âge :</strong> {{ patientDetails.age }}</p>
+    <p><strong>Genre :</strong> {{ patientDetails.gender }}</p>
+    <p><strong>Matricule :</strong> {{ patientDetails.matricule }}</p>
 
-    <h2>{{ patientDetails.firstName }} {{ patientDetails.lastName }} - Patient Details</h2>
-    <p><strong>Age:</strong> {{ patientDetails.age }}</p>
-    <p><strong>Gender:</strong> {{ patientDetails.gender }}</p>
-
-    <!-- Add more lines for other patient details as needed -->
+    <!-- Ajouter d'autres lignes pour d'autres détails du patient si nécessaire -->
     <hr>
     <p>{{ patientDetails.medicalData.diagnostic }}</p>
     <hr>
-    <h3>Clinical Particulars</h3>
-    <p><strong>Allergy:</strong> {{ patientDetails.clinicalParticulars.allergy ? 'oui' : 'Non' }}</p>
-    <p><strong>Allergy Description:</strong> {{ patientDetails.clinicalParticulars.allergyDescription }}</p>
-    <p><strong>Surgical History:</strong>{{ patientDetails.clinicalParticulars.surgicalHistory ? 'oui' : 'Non' }}</p>
-    <p><strong>Surgical Description:</strong> {{ patientDetails.clinicalParticulars.surgicalDescription }}</p>
+    <h3>Particularités cliniques</h3>
+    <p><strong>Allergie :</strong> {{ patientDetails.clinicalParticulars.allergy ? 'oui' : 'Non' }}</p>
+    <p><strong>Description de l'allergie :</strong> {{ patientDetails.clinicalParticulars.allergyDescription }}</p>
+    <p><strong>Antécédents chirurgicaux :</strong>{{ patientDetails.clinicalParticulars.surgicalHistory ? 'oui' : 'Non' }}</p>
+    <p><strong>Description chirurgicale :</strong> {{ patientDetails.clinicalParticulars.surgicalDescription }}</p>
     <hr>
-    <h3>Surveillance Elements</h3>
-    <p><strong>Blood Pressure:</strong> {{ patientDetails.surveillanceElements.vitalSigns.bloodPressure }}</p>
-    <p><strong>Pulse:</strong> {{ patientDetails.surveillanceElements.vitalSigns.pulse }}</p>
-    <p><strong>Respiratory Rate:</strong> {{ patientDetails.surveillanceElements.vitalSigns.respiratoryRate }}</p>
-    <!-- Add more lines for other vital signs -->
+    <h3>Éléments de surveillance</h3>
+    <p><strong>Pression artérielle :</strong> {{ patientDetails.surveillanceElements.vitalSigns.bloodPressure }}</p>
+    <p><strong>Pouls :</strong> {{ patientDetails.surveillanceElements.vitalSigns.pulse }}</p>
+    <p><strong>Fréquence respiratoire :</strong> {{ patientDetails.surveillanceElements.vitalSigns.respiratoryRate }}</p>
+    <!-- Ajouter d'autres lignes pour d'autres signes vitaux -->
     <hr>
-    <h3>Alerts</h3>
-    <p><strong>Weight:</strong> {{ patientDetails.surveillanceElements.alerts.weight }} kg</p>
-    <p><strong>Height:</strong> {{ patientDetails.surveillanceElements.alerts.height }} cm</p>
-    <p><strong>BMI:</strong> {{ patientDetails.surveillanceElements.alerts.BMI }}</p>
+    <h3>Alertes</h3>
+    <p><strong>Poids :</strong> {{ patientDetails.surveillanceElements.alerts.weight }} kg</p>
+    <p><strong>Taille :</strong> {{ patientDetails.surveillanceElements.alerts.height }} cm</p>
+    <p><strong>IMC :</strong> {{ patientDetails.surveillanceElements.alerts.BMI }}</p>
     <hr>
-    <h3>Observations</h3>
+    <h3><strong>Observations</strong> </h3>
     <p>{{ patientDetails.surveillanceElements.alerts.observations }}</p>
 
     <hr>
-    <h3>Ajouter Medical Data</h3>
+    <h3><strong>Ajouter des Données Médicales</strong> </h3>
 
     <div class="card-header" (click)="openModalMedicalAdministrations()" >
-        <h5>Ajouter Medical Administrations</h5>
+        <h5>Ajouter Administrations Médicales</h5>
     </div>
 
-    <div class="card-header">
-        <h5>Ajouter Surgical Operations</h5>
+    <div class="card-header" (click)="openModalOperationChirurgicale()">
+        <h5>Ajouter Opération Chirurgicale</h5>
     </div>
+
+    <div class="card-header" (click)="openModalSchematiqueDesPlaies()">
+        <h5>Ajouter Schematique Des Plaies</h5>
+    </div>
+
 
 
 
     <hr>
-    <h3>Medical Data</h3>
+    <h3><strong>Les Données Médicales</strong> </h3>
+
     <div class="card-header" (click)="redirectToMedicalAdministrations()">
-        <h5>View Medical Administrations</h5>
+        <h5>Voir les Administrations Médicales</h5>
     </div>
+
+
     <div class="card-header" (click)="redirectToSurgicalOperations()">
-        <h5>View Surgical Operations</h5>
+        <h5>Voir les Opérations Chirurgicales</h5>
     </div>
+
+
+    <div class="card-header" (click)="redirectToSchematiqueDesPlaies()">
+        <h5>Voir les Schematique Des Plaies </h5>
+    </div>
+
 
 
     <!-- Modal Medical Administrations -->
@@ -62,13 +76,10 @@
                         <div class="icon-box">
                             <button class="material-icons" (click)="closeModalMedicalAdministrations()">&#xE5CD;</button>
                         </div>
-                        <h4 style="text-align: center" class="modal-title">Medical Administrations</h4>
+                        <h4 style="text-align: center" class="modal-title">Administrations Médicales</h4>
                     </div>
                     <div class="modal-body">
-                        <!-- Add the Medical Administrations form -->
-                        <!-- patient-details.component.html -->
 
-                        <!-- patient-details.component.html -->
 
                         <form (submit)="saveMedicalAdministration()">
                             <div class="inputbox">
@@ -102,7 +113,7 @@
                             </div>
 
                             <div class="inputbox">
-                                <label>Time</label>
+                                <label>Periode</label>
                                 <input type="text" [(ngModel)]="medicalAdministration.time" name="time" required>
                                 <div *ngIf="formSubmitted && !medicalAdministration.time" class="error-message"></div>
                             </div>
@@ -122,11 +133,9 @@
                                 <input type="checkbox" [(ngModel)]="medicalAdministration.soir" name="soir">
                             </div>
                             <div class="inputbox">
-                                <label>Infirmier name </label>
+                                <label>Nom du l'infirmier </label>
                                 <p>{{ medicalAdministration.remarqueInfermier }}</p>
                             </div>
-
-
 
                             <div class="modal-footer">
                                 <div *ngIf="formSubmitted && !isFormValid()" class="error-message"></div>
@@ -134,13 +143,199 @@
                             </div>
                         </form>
 
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+    <!-- Modal Opération Chirurgicale -->
+    <div #fsModalOperationChirurgicale class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="OperationChirurgicale" aria-hidden="true" data-backdrop="static" data-keyboard="false" [style.display]="OperationChirurgicale ? 'block' : 'none'">
+        <div id="myOperationChirurgicale" class="modal-dialog">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-box">
+                            <button class="material-icons" (click)="closeModalOperationChirurgicale()">&#xE5CD;</button>
+                        </div>
+                        <h4 style="text-align: center" class="modal-title">Opération Chirurgicale</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form (submit)="saveOperationChirurgicale()">
+                            <!-- Pre-Operative Section -->
+                            <div>
+                                <label>Date (Pre-Operative):</label>
+                                <input type="date" [(ngModel)]="operationChirurgicale.preOperative.datepreOperative" required>
+                            </div>
+
+                            <div>
+                                <label>Lieu (Pre-Operative):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.preOperative.lieupreOperative" required>
+                            </div>
+
+                            <div>
+                                <label>Initials (Pre-Operative):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.preOperative.initialspreOperative" required>
+                            </div>
+
+                            <!-- Drains Section -->
+                            <div>
+                                <label>Type (Drains):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.drains.typedrains" required>
+                            </div>
+
+                            <div>
+                                <label>Aspiration (Drains):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.drains.aspirationdrains" required>
+                            </div>
+
+                            <div>
+                                <label>Remarque (Drains):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.drains.enleveenPlacedrains" required>
+                            </div>
+
+                            <div>
+                                <label>Init (Drains):</label>
+                                <input type="date" [(ngModel)]="operationChirurgicale.drains.enPlacedrains.initenPlacedrains" required>
+                            </div>
+
+                            <div>
+                                <label>Installe (Drains):</label>
+                                <input type="date" [(ngModel)]="operationChirurgicale.drains.enPlacedrains.installeenPlacedrains" required>
+                            </div>
+
+                            <div>
+                                <label>Enleve (Drains):</label>
+                                <input type="date" [(ngModel)]="operationChirurgicale.drains.enPlacedrains.enleveenPlacedrains" required>
+                            </div>
+
+                            <!-- Post-Operative Section -->
+                            <div>
+                                <label>Soin (Post-Operative):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.postOperative.soinpostOperative" required>
+                            </div>
+
+                            <div>
+                                <label>Date (Post-Operative):</label>
+                                <input type="date" [(ngModel)]="operationChirurgicale.postOperative.datepostOperative" required>
+                            </div>
+
+                            <div>
+                                <label>Lieu (Post-Operative):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.postOperative.lieupostOperative" required>
+                            </div>
+
+                            <div>
+                                <label>Initials (Post-Operative):</label>
+                                <input type="text" [(ngModel)]="operationChirurgicale.postOperative.initialspostOperative" required>
+                            </div>
+
+                            <!-- Observations Section -->
+                            <div>
+                                <label>Observations:</label>
+                                <textarea [(ngModel)]="operationChirurgicale.observations"></textarea>
+                            </div>
+                            <!-- Add more form fields as needed -->
+                            <div class="modal-footer">
+                                <div *ngIf="OperationChirurgicale && !isOperationChirurgicaleFormValid" class="error-message"></div>
+                                <button class="btn" type="submit">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Modal SchematiqueDesPlaies -->
+    <div #fsModalSchematiqueDesPlaies class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="ModalSchematiqueDesPlaies" aria-hidden="true" data-backdrop="static" data-keyboard="false" [style.display]="SchematiqueDesPlaies ? 'block' : 'none'">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <button class="material-icons" (click)="closeModalSchematiqueDesPlaies()">&#xE5CD;</button>
+                    </div>
+                    <h4 style="text-align: center" class="modal-title">Schematique Des Plaies</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for Schematique Des Plaies -->
+                    <form (ngSubmit)="saveSchematique()">
+                    <h3>fiche Suivi</h3>
+
+                        <div class="form-group">
+                            <label for="plaiesPostOperation">plaiesPostOperation:</label>
+                            <input type="checkbox" id="plaiesPostOperation" name="plaiesPostOperation" [(ngModel)]="wound.ficheSuivi.plaiesPostOperation">
+                        </div>
+                        <div class="form-group">
+                            <label for="plaies">plaies:</label>
+                            <input type="checkbox" id="plaies" name="plaies" [(ngModel)]="wound.ficheSuivi.plaies">
+                        </div>
+                        <div class="form-group">
+                            <label for="ulceresJambesPieds">ulcères Jambes Pieds:</label>
+                            <input type="checkbox" id="ulceresJambesPieds" name="ulceresJambesPieds" [(ngModel)]="wound.ficheSuivi.ulceresJambesPieds">
+                        </div>
+                        <h3>evaluation Initiale</h3>
+                        <div class="form-group">
+                            <label>Date :</label>
+                            <input type="date" [(ngModel)]="wound.evaluationInitiale.date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="site">Site:</label>
+                            <input type="text" class="form-control" id="site" name="site" [(ngModel)]="wound.evaluationInitiale.site" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profondeur">Profondeur:</label>
+                            <input type="text" class="form-control" id="profondeur" name="profondeur" [(ngModel)]="wound.evaluationInitiale.profondeur" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grandeur">Grandeur:</label>
+                            <input type="text" class="form-control" id="grandeur" name="grandeur" [(ngModel)]="wound.evaluationInitiale.grandeur" required>
+                        </div>
+
+                        <h3>écoulement</h3>
+
+                        <div class="form-group">
+                            <label for="quantite">Quantite:</label>
+                            <input type="text" class="form-control" id="quantite" name="quantite" [(ngModel)]="wound.ecoulement.quantite" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phaseNecrose">Phase Necrose:</label>
+                            <input type="checkbox" id="phaseNecrose" name="phaseNecrose" [(ngModel)]="wound.evaluationInitiale.phaseNecrose">
+                        </div>
+                        <div class="form-group">
+                            <label for="inflammation">Inflammation:</label>
+                            <input type="checkbox" id="inflammation" name="inflammation" [(ngModel)]="wound.evaluationInitiale.inflammation">
+                        </div>
+                        <div class="form-group">
+                            <label for="gangrene">Gangrene:</label>
+                            <input type="checkbox" id="gangrene" name="gangrene" [(ngModel)]="wound.evaluationInitiale.gangrene">
+                        </div>
+                        <!-- Add more input fields as needed -->
+
+                        <!-- Error message -->
+<!--
+                        <div *ngIf="SchematiqueDesPlaies && !isSchematiqueFormValid()" class="error-message">Please fill in all required fields.</div>
+-->
+
+                        <!-- Submit button -->
+                        <div class="modal-footer">
+                            <button class="btn" type="submit">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

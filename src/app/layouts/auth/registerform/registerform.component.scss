@@ -1,8 +1,8 @@
-/*body {
+body {
   font-family: "Muli-Regular";
   font-size: 14px;
   margin: 0;
-  color: #ff0000; }*/
+  color: #ff0000; }
 
 input, textarea, select, button {
   font-family: "Muli-Regular"; }
@@ -39,14 +39,13 @@ a {
 
 .image-1 {
   position: absolute;
-  bottom: -350px;
-  left: -460px;
-  z-index: 120; }
+  top: 10%;
+  left: -380px;
+  transform: translateY(-50%);
+  z-index: 520;
+  width: 2100px; /* Adjust the width as needed */
+}
 
-.image-2 {
-  position: absolute;
-  bottom: 0;
-  right: -129px; }
 
 form {
   border : 1px solid #00acff;
@@ -92,37 +91,37 @@ h3 {
 .form-control {
   border: none;
   border-radius: 10px !important;
-  border-bottom: 1px solid #2fa6e3;
+  border-bottom: 1px solid #00acff;
   display: block;
   width: 100%;
   height: 38px;
   background: none;
   padding: 3px 42px 0px;
-  color: #2fa6e3;
+  color: #00acff;
   font-family: "Muli-SemiBold";
   font-size: 16px; }
 .form-control::-webkit-input-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #2fa6e3;
+  color: #000000;
   transform: translateY(1px); }
 .form-control::-moz-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #2fa6e3;
+  color: #000000;
   transform: translateY(1px); }
 .form-control:-ms-input-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #2fa6e3;
+  color: #000000;
   transform: translateY(1px); }
 .form-control:-moz-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #2fa6e3;
+  color: #000000;
   transform: translateY(1px); }
 .form-control:focus {
-  border-bottom: 1px solid #2fa6e3; }
+  border-bottom: 1px solid #accffe; }
 
 button {
   border: none;
@@ -194,8 +193,3 @@ button:hover:before, button:hover:after {
     background: none; } }
 
 /*# sourceMappingURL=style.css.map */
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 4px;
-}

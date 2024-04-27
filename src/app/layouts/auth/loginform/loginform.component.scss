@@ -39,14 +39,13 @@ a {
 
 .image-1 {
   position: absolute;
-  bottom: -255px;
-  left: -250px;
-  z-index: 120; }
+  top: 10%;
+  left: -380px;
+  transform: translateY(-50%);
+  z-index: 520;
+  width: 2100px; /* Adjust the width as needed */
+}
 
-.image-2 {
-  position: absolute;
-  bottom: 0;
-  right: -129px; }
 
 form {
   border : 1px solid #00acff;
@@ -104,22 +103,22 @@ h3 {
 .form-control::-webkit-input-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #00acff;
+  color: #000000;
   transform: translateY(1px); }
 .form-control::-moz-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #00acff;
+  color: #000000;
   transform: translateY(1px); }
 .form-control:-ms-input-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #00acff;
+  color: #000000;
   transform: translateY(1px); }
 .form-control:-moz-placeholder {
   font-size: 14px;
   font-family: "Muli-Regular";
-  color: #00acff;
+  color: #000000;
   transform: translateY(1px); }
 .form-control:focus {
   border-bottom: 1px solid #accffe; }
